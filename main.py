@@ -30,4 +30,4 @@ def load_cases(input_file = 'input.txt'):
 
 cases = load_cases('input.txt')
 for idx, c in enumerate(cases):
-    print "Case {}: {}".format(idx+1, c.solve())
+    print "Case {}: {} ({} Iterations)".format(idx+1, c.solve(), c.total_iteration)

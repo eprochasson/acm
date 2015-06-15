@@ -11,6 +11,8 @@ class Case:
             self.machines.append({ 'id': id, 'day': m[0], 'cost': m[1], 'sell': m[2], 'profit': m[3]})
             id += 1
 
+        self._initialize_profitability()
+
     def solve(self):
         self.total_iteration = 0
         return self._solve(
@@ -83,16 +85,25 @@ class Case:
 
 
     # Extract from the list of machines the one that 1. are available that day 2. that we can afford
+    # 3. whose remaining profit is higher or equal to the current one
     def _get_available_machines(self, day, balance, inventory, machines):
         if inventory != None:
             # How much money we can gather if we sell our existing inventory
             potential_balance = balance + inventory['sell']
+            remaining_profit = inventory['remaining'][day]
         else:
             potential_balance = balance
+            remaining_profit = 0
 
         # Search for one or more machine available that day
         available = []
         for m in machines:
-            if m['day'] == day and m['cost'] <= potential_balance:
+            if m['day'] == day and m['cost'] <= potential_balance: # and m['remaining'][day] >= remaining_profit:
                 available.append(m)
         return available
+
+    def _initialize_profitability(self):
+        for m in self.machines:
+            m['remaining'] = {} # We could find a more optimized data structure if needed.
+            for d in range(m['day'], self.days+1):
+                m['remaining'][d] = (self.days-d+1)*m['profit']+m['sell']
