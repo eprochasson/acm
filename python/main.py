@@ -28,6 +28,6 @@ def load_cases(input_file = 'input.txt'):
             else:
                 machines.append(line)
 
-cases = load_cases('input.txt')
+cases = load_cases('../input.txt')
 for idx, c in enumerate(cases):
     print "Case {}: {}".format(idx+1, c.solve())

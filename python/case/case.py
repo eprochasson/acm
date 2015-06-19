@@ -60,16 +60,16 @@ class Case:
 
         # Generate all branches where we buy
         branches = []
-        if len(to_buy) > 0:
-            for b in to_buy:
-                branches.append({
-                    'day': day + 1,
-                    'inventory': b,
-                    'balance': balance + sell_price - b['cost'],
-                    'available_machines' : [a for a in available_machines if a['id'] != b['id'] and a['day'] > day ]
-                                                                                        # Remove the machine
-                                                                                        # for future iteration
-                })
+
+        for b in to_buy:
+            branches.append({
+                'day': day + 1,
+                'inventory': b,
+                'balance': balance + sell_price - b['cost'],
+                'available_machines' : [a for a in available_machines if a['id'] != b['id'] and a['day'] > day ]
+                                                                                    # Remove the machine
+                                                                                    # for future iteration
+            })
 
         # Select the best branch
         return max(
