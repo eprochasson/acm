@@ -1,14 +1,13 @@
 package problem
 
-case class Machine(day: Int, cost: Int, sell: Int, profit: Int)
-
 class Problem(balance: Int, days: Int, machines: List[Array[Int]]) {
+  class Machine(val day: Int, val cost: Int, val sell: Int, val profit: Int)
 
   def solve(
               day: Int = 1,
               balance: Int = this.balance,
               inventory: Machine = null,
-              availableMachines: List[Machine] = this.machines.map(m => Machine(m(0), m(1), m(2), m(3)))): Int =
+              availableMachines: List[Machine] = this.machines.map(m => new Machine(m(0), m(1), m(2), m(3)))): Int =
     (day, balance, inventory, availableMachines) match {
       case (this.days, b, null, _) => // Last day, no inventory
         b
@@ -38,7 +37,6 @@ class Problem(balance: Int, days: Int, machines: List[Array[Int]]) {
   }
 
   def availableMachines(day: Int, balance: Int, inventory: Machine = null, machines: List[Machine]): List[Machine] = {
-    val potential_balance = if (inventory == null) balance else balance + inventory.sell
-    machines.filter(m => (m.day == day) && (m.cost <= potential_balance))
+    machines.filter(m => (m.day == day) && (m.cost <= (if (inventory == null) balance else balance + inventory.sell)))
   }
 }

@@ -4,6 +4,7 @@ import scala.io.Source
 
 
 object Main extends App{
+
   // Parse the input file and load the data
   def loadProblems(inputFile: String): List[Problem] = {
     val lines = Source.fromFile(inputFile).getLines().toList
