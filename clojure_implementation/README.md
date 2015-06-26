@@ -1,9 +1,13 @@
 # clojure_implementation
 
-Clojure implementation of the AMC problem.
-
+Clojure implementation of the AMC problem. Only solve one problem because I can't be bothered to implement the problem
+parsing algorithm in Clojure.
 
 ## Usage
+
+`lein run`
+
+
 
 FIXME: explanation
 
