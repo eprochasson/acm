@@ -1,1 +1,1 @@
-This repository is a naive implementation of a technical challenge that can be found [here](http://blog.csdn.net/bigdata_lijun/article/details/11272335), in various language, mostly for fun.
+This repository is a naive implementation of the [ACM International Collegiate World Finals Programming Contest 2011, Problem F](https://github.com/miracode/Machine-Works), in various language, mostly for fun.
